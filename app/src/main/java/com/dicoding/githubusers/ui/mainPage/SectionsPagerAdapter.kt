@@ -1,9 +1,10 @@
-package com.dicoding.githubusers.ui
+package com.dicoding.githubusers.ui.mainPage
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.dicoding.githubusers.ui.detailUser.FollowFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     var username: String = ""

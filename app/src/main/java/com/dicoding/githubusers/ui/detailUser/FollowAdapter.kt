@@ -1,4 +1,4 @@
-package com.dicoding.githubusers.ui
+package com.dicoding.githubusers.ui.detailUser
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
-import com.dicoding.githubusers.data.response.FollowerResponseItem
+import com.dicoding.githubusers.data.remote.response.FollowerResponseItem
 import com.dicoding.githubusers.databinding.ItemUserBinding
 
 class FollowAdapter : ListAdapter<FollowerResponseItem, FollowAdapter.MyViewHolder>(DIFF_CALLBACK) {

@@ -1,21 +1,21 @@
-package com.dicoding.githubusers.ui
+package com.dicoding.githubusers.ui.detailUser
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.githubusers.R
-import com.dicoding.githubusers.data.response.FollowerResponseItem
+import com.dicoding.githubusers.data.remote.response.FollowerResponseItem
 import com.dicoding.githubusers.databinding.FragmentFollowBinding
+import com.dicoding.githubusers.ui.ViewModelFactory
 
 
 class FollowFragment : Fragment() {
     private lateinit var binding : FragmentFollowBinding
-    private lateinit var detailViewModel: DetailViewModel
 
     companion object {
         const val ARG_POSITION = "ARG_POSITION"
@@ -34,8 +34,10 @@ class FollowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFollowBinding.bind(view)
 
-        detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
-
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(requireActivity())
+        val detailViewModel: DetailViewModel by viewModels {
+            factory
+        }
         val layoutManager = LinearLayoutManager(activity)
         binding.rvUser.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(activity, layoutManager.orientation)

@@ -1,9 +1,9 @@
-package com.dicoding.githubusers.data.retrofit
+package com.dicoding.githubusers.data.remote.retrofit
 
 import com.dicoding.githubusers.BuildConfig
-import com.dicoding.githubusers.data.response.FollowerResponseItem
-import com.dicoding.githubusers.data.response.UserDetailResponse
-import com.dicoding.githubusers.data.response.UserResponse
+import com.dicoding.githubusers.data.remote.response.FollowerResponseItem
+import com.dicoding.githubusers.data.remote.response.UserDetailResponse
+import com.dicoding.githubusers.data.remote.response.UserResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

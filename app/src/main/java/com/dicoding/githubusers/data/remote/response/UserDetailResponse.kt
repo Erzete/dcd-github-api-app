@@ -1,4 +1,4 @@
-package com.dicoding.githubusers.data.response
+package com.dicoding.githubusers.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,9 +9,6 @@ data class UserDetailResponse(
 
 	@field:SerializedName("id")
 	val id: Int,
-
-	@field:SerializedName("email")
-	val email: Any,
 
 	@field:SerializedName("followers")
 	val followers: Int,

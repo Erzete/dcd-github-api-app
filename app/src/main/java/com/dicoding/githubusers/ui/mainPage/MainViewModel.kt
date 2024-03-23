@@ -1,17 +1,18 @@
-package com.dicoding.githubusers.ui
+package com.dicoding.githubusers.ui.mainPage
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.githubusers.data.response.GithubUser
-import com.dicoding.githubusers.data.response.UserResponse
-import com.dicoding.githubusers.data.retrofit.ApiConfig
+import com.dicoding.githubusers.data.local.UserRepository
+import com.dicoding.githubusers.data.remote.response.GithubUser
+import com.dicoding.githubusers.data.remote.response.UserResponse
+import com.dicoding.githubusers.data.remote.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel(){
+class MainViewModel(private val userRepository: UserRepository) : ViewModel(){
     private val _listUser = MutableLiveData<List<GithubUser>>()
     val listUser : LiveData<List<GithubUser>> = _listUser
 

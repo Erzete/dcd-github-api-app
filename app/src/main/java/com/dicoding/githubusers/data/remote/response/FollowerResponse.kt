@@ -1,12 +1,6 @@
-package com.dicoding.githubusers.data.response
+package com.dicoding.githubusers.data.remote.response
 
 import com.google.gson.annotations.SerializedName
-
-data class FollowerResponse(
-
-	@field:SerializedName("FollowerResponse")
-	val followerResponse: List<FollowerResponseItem>
-)
 
 data class FollowerResponseItem(
 

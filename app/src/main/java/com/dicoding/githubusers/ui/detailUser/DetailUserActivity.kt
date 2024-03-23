@@ -1,4 +1,4 @@
-package com.dicoding.githubusers.ui
+package com.dicoding.githubusers.ui.detailUser
 
 import android.os.Bundle
 import android.view.View
@@ -10,14 +10,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.githubusers.R
-import com.dicoding.githubusers.data.response.UserDetailResponse
+import com.dicoding.githubusers.data.remote.response.UserDetailResponse
 import com.dicoding.githubusers.databinding.ActivityDetailUserBinding
+import com.dicoding.githubusers.ui.favUser.FavUserViewModel
+import com.dicoding.githubusers.ui.mainPage.SectionsPagerAdapter
+import com.dicoding.githubusers.ui.ViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailUserBinding
-    private val detailViewModel by viewModels<DetailViewModel>()
 
     companion object {
         private const val KEY_USER = "key_user"
@@ -35,9 +37,37 @@ class DetailUserActivity : AppCompatActivity() {
 
         val username = intent.getStringExtra(KEY_USER)
 
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+        val detailViewModel: DetailViewModel by viewModels {
+            factory
+        }
+        val favUserViewModel: FavUserViewModel by viewModels {
+            factory
+        }
+
         if (savedInstanceState == null) {
             if (username != null) {
                 detailViewModel.getDetailUser(username)
+            }
+        }
+        if (username != null) {
+            favUserViewModel.checkFavorite(username).observe(this) { isFavorite ->
+                if (isFavorite != null) {
+                    binding.fab.setImageResource(R.drawable.baseline_favorite_24)
+                    binding.fab.setOnClickListener {
+                        detailViewModel.detailUser.value?.let { detailUser ->
+                            favUserViewModel.deleteFavorite(detailUser)
+                        }
+                    }
+                }
+                else {
+                    binding.fab.setImageResource(R.drawable.baseline_favorite_border_24)
+                    binding.fab.setOnClickListener {
+                        detailViewModel.detailUser.value?.let { detailUser ->
+                            favUserViewModel.addFavorite(detailUser)
+                        }
+                    }
+                }
             }
         }
 
@@ -57,6 +87,7 @@ class DetailUserActivity : AppCompatActivity() {
         detailViewModel.isLoading.observe(this) {
             showLoading(it)
         }
+
     }
 
     private fun setDetailUser(aUser: UserDetailResponse) {

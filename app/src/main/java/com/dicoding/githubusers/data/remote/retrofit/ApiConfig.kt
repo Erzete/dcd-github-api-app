@@ -1,4 +1,4 @@
-package com.dicoding.githubusers.data.retrofit
+package com.dicoding.githubusers.data.remote.retrofit
 
 import com.dicoding.githubusers.BuildConfig
 import okhttp3.OkHttpClient
